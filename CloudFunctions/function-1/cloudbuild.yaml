@@ -10,7 +10,7 @@ steps:
       - --trigger-http
       - --runtime=python37
       - --allow-unauthenticated
-      - --entry-point=hello_world
+      - --entry-point=function_cicd
       - --memory=512MB
       - --timeout=120s  
 	  
