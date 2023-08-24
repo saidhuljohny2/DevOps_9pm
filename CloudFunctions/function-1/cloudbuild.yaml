@@ -1,12 +1,18 @@
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  args:
-  - gcloud
-  - functions
-  - deploy
-  - function_cicd
-  - --region=us-central1
-  - --source=.
-  - --trigger-http
-  - --runtime=python37 
-  - --allow-unauthenticated
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args:
+      - gcloud
+      - functions
+      - deploy
+      - function_cicd
+      - --region=us-central1
+      - --source=.
+      - --trigger-http
+      - --runtime=python37
+      - --allow-unauthenticated
+      - --entry-point=hello_world
+      - --memory=512MB
+      - --timeout=120s  
+	  
+options:
+  logging: CLOUD_LOGGING_ONLY
