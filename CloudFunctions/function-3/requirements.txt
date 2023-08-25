@@ -1,0 +1,2 @@
+google-cloud-secret-manager==2.7.0
+google-cloud-storage==1.41.0
