@@ -1,0 +1,18 @@
+runtime: python37  # Specify the Python runtime version
+
+instance_class: F2  # Specify the instance class (adjust as needed)
+
+automatic_scaling:
+  target_cpu_utilization: 0.65  # Adjust the target CPU utilization as needed
+  target_throughput_utilization: 0.8  # Adjust the target throughput utilization as needed
+
+handlers:
+  - url: /.*
+    script: auto
+
+/*
+runtime specifies the Python runtime version. You can change this to any other supported Python version if needed.
+instance_class specifies the instance class. In this case, F2 is used, but you can choose a different class based on your application's requirements. The available instance classes might vary depending on the region you're deploying to.
+automatic_scaling configures the scaling settings for your app. It includes parameters like target_cpu_utilization and target_throughput_utilization that control how the instances scale based on CPU and throughput utilization.
+The handlers section defines how requests to your app are handled. In this example, all requests are directed to the auto script, which usually refers to the main entry point of your application.
+*/
