@@ -1,0 +1,34 @@
+steps:
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/project-demo-1-390105/runimage', '.']
+  # Push the container image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/project-demo-1-390105/runimage']
+  # Deploy container image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'runwithcicd'
+      - '--image'
+      - 'gcr.io/project-demo-1-390105/runimage'
+      - '--region'
+      - 'us-central1'
+      - '--allow-unauthenticated'
+  # Add IAM policy binding to allow all users to invoke the Cloud Run service
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'beta'
+      - 'run'
+      - 'services'
+      - 'add-iam-policy-binding'
+      - 'runwithcicd'
+      - '--region=us-central1'
+      - '--member=allUsers'
+      - '--role=roles/run.invoker'
+
+images:
+  - 'gcr.io/project-demo-1-390105/runimage'
