@@ -1,0 +1,59 @@
+Step 1: Create a Simple Node.js Application
+    Create a directory for your Node.js application, and inside that directory, create an app.js file with the following content:
+
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 8080;
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});
+
+Step 2: Create a package.json File
+    In the same directory, create a package.json file with the following content:
+
+{
+  "name": "my-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js app for Google App Engine",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
+
+Step 3: Install Dependencies
+    Run the following command in your terminal to install the Express.js dependency:
+
+npm install
+
+Step 4: Create a Deployment ZIP File
+
+    To create a deployment ZIP file for your application, follow these steps:
+
+        Create a .gcloudignore file in your application directory (if it doesn't already exist) and add the following lines to it to exclude unnecessary files and folders from the deployment:
+node_modules/
+npm-debug.log
+
+        Zip your application files (including app.js, package.json, and node_modules if it exists) into a ZIP file. You can do this with the following command:
+zip -r app.zip .
+
+        This command will create a ZIP file named app.zip containing your Node.js application files.
+
+Step 5: Host Your ZIP File
+
+    Upload the app.zip file to a location where it can be publicly accessed via a URL. You can use Google Cloud Storage or any other file hosting service to store the ZIP file. Make sure to note the URL of the ZIP file.
+
+Step 6: Set app_zip_source_url in terraform.tfvars
+
+Finally, set the app_zip_source_url variable in your terraform.tfvars file to the URL of your hosted ZIP file. For example:
+
+    app_zip_source_url = "https://storage.googleapis.com/your-bucket-name/app.zip"
+    Replace "https://storage.googleapis.com/your-bucket-name/app.zip" with the actual URL where you have hosted the app.zip file.

@@ -1,0 +1,13 @@
+{
+    "name": "my-app",
+    "version": "1.0.0",
+    "description": "A simple Node.js app for Google App Engine",
+    "main": "app.js",
+    "dependencies": {
+      "express": "^4.17.1"
+    },
+    "scripts": {
+      "start": "node app.js"
+    }
+  }
+  
