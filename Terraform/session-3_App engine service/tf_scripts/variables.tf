@@ -13,6 +13,12 @@ variable "project_id" {
   type        = string
 }
 
+variable "region" {
+  description = "Region for the instance"
+  type        = string
+  default     = "us-central1"
+}
+
 variable "compute_network_user_role" {
   description = "Role for the custom service account on the project"
   type        = string

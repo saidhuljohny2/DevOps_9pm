@@ -1,3 +1,10 @@
+# define the provider block
+
+provider "google" {
+  project     = var.project_id
+  region      = var.region
+}
+
 resource "google_service_account" "custom_service_account" {
   account_id   = var.custom_service_account_id
   display_name = var.custom_service_account_display_name

@@ -18,3 +18,4 @@ app_target_cpu_utilization          = 0.5
 app_target_throughput_utilization   = 0.75
 app_min_instances                   = 2
 app_max_instances                   = 10
+region                              = "us-central1"
