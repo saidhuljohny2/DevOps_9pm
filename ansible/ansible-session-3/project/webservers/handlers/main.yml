@@ -1,0 +1,8 @@
+---
+# handlers file for webservers
+# handlers/main.yml
+
+# This is the main handlers file for the webserver role.
+
+# Import handlers for the webserver role.
+- import_tasks: webserver_handlers.yml

@@ -1,0 +1,6 @@
+# tasks/deploy_webpage.yml
+---
+- name: Deploy Webpage
+  copy:
+    src: "{{ webpage_source }}"
+    dest: /var/www/html/index.html

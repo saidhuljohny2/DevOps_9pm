@@ -1,0 +1,7 @@
+# tasks/install_webserver.yml
+---
+- name: Install Web Server
+  apt:
+    name: "{{ webserver_package }}"
+    state: present
+  become: true

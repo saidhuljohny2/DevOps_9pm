@@ -1,0 +1,27 @@
+# tasks/configure_webserver.yml
+---
+- name: Copy Web Server Configuration
+  template:
+    src: webserver.conf.j2
+    dest: /etc/{{ webserver_service }}/sites-available/default
+  notify:
+    - Restart Web Server
+
+- name: Ensure Web Server Config is Enabled
+  file:
+    src: /etc/{{ webserver_service }}/sites-available/default
+    dest: /etc/{{ webserver_service }}/sites-enabled/default
+    state: link
+  notify:
+    - Restart Web Server
+
+- name: Remove Default Web Root
+  file:
+    path: /var/www/html/index.html
+    state: absent
+
+handlers:
+- name: Restart Web Server
+  service:
+ame: "{{ webserver_service }}"
+    state: restarted

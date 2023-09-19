@@ -1,0 +1,6 @@
+---
+# defaults file for webservers
+# defaults/main.yml
+webserver_package: apache2  # You can change this to the web server of your choice
+webserver_service: apache2  # Adjust this to match your web server
+webpage_source: files/index.html

@@ -1,0 +1,8 @@
+# handlers/webserver_handlers.yml
+
+# Handlers for the webserver role.
+
+- name: Restart Web Server
+  service:
+    name: "{{ webserver_service }}"
+    state: restarted

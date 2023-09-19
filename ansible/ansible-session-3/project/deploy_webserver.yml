@@ -1,0 +1,5 @@
+# deploy_webserver.yml
+- hosts: slave
+  become: true  # Use if you need superuser privileges
+  roles:
+    - webservers
