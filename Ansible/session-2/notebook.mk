@@ -26,4 +26,12 @@ Testing:
 		- ipaddress:80
 	- test
 
+getting started with ansible :
+	https://docs.ansible.com/ansible/latest/getting_started/index.html
+	
+Verify the hosts in your inventory : 
+	ansible all --list-hosts
+
+Ping the managed nodes :
+	ansible all -m ping
 

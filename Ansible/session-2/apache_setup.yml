@@ -1,7 +1,7 @@
 ---
 - name: Configure Apache2 and Create Sample Website
-  hosts: webservers  # Replace with the name of your target host or group
-  become: yes  # To run tasks as sudo
+  hosts: myhosts  
+  become: yes 
 
   tasks:
     - name: Update package cache (Debian/Ubuntu)
