@@ -251,7 +251,24 @@ xvi. Now enter slave1 _http://<Public IP:82>/devopsIQ/_ in the browser.
 
 
 ## $`\textcolor{red}{\text{Website is Deployed successfully}}`$
-  but it we are still manually building the code, lets automate the process using webhook
+
+
+## enable pipeline view plugin :
+	    go to manage Jenkins > plugins > Build Pipeline > install without restart
+
+1. create view:
+	    go to dashboard > click on + mark > 
+	    name = cicd_demo
+	    Create
+	    select initial job = demo
+	    click save
+	    
+2. now a pipeline view opens up, where you can view all options in one page
+	    
+3. explore all options > click on run 
+
+  Note : but it we are still manually triggering the build, lets automate the process using webhook
+
 
 ## let's automate with webhook: 2 changes needed
 
@@ -265,7 +282,7 @@ xvi. Now enter slave1 _http://<Public IP:82>/devopsIQ/_ in the browser.
   click on settings
   click on webhooks
   add webhook
-      http://34.125.3.133:8080/github-webhook/
+      http://<MasterIP>:8080/github-webhook/
       paste the secret from Jenkins
   click save 
         
