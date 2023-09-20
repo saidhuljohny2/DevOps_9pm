@@ -1,0 +1,42 @@
+pipeline {
+    agent {
+        node {
+            label 'slave2'
+        }
+    }
+    stages {
+        stage('SCM checkout'){
+            steps {
+		        git "https://github.com/vistasunil/devopsIQ.git"
+            }
+		}
+	    stage('Build docker Image'){
+	        steps {
+    	        	sh "sudo docker build /home/ubuntu/jenkins/workspace/seljob -t vistasunil/devopsdemo"
+	        }
+	    }
+	    stage('Remove existing website'){
+	        steps {
+			sh "if [ `sudo docker ps -a -q|wc -l` -gt 0 ]; then sudo docker rm -f \$(sudo docker ps -a -q);fi"
+	        }
+	    }
+	    stage('Deploy website'){
+	        steps {
+    	        	sh "sudo docker run -d -p 82:80 --name mywebsite vistasunil/devopsdemo"
+	        }
+	    }
+	    stage ('SCM checkout Selenium'){
+	        steps {
+		        git "https://github.com/vistasunil/selenium.git"
+	        }
+		}
+    	stage ('Test Website'){
+    	    steps {
+        		sh "mvn clean install"
+        		dir("target") {
+        		   sh "java -jar SeleniumTest-0.0.1-SNAPSHOT.jar"
+        	   }
+    	    }
+    	}
+    }
+}

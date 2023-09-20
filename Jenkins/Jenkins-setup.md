@@ -145,11 +145,14 @@ So now that our Slave1 has been connected to Jenkins Server, it look similar to 
 
 i. Open your GitHub account and import the below given repository.
 
-_**https://github.com/vistasunil/devopsIQ**_
+_****_
 
 ii. Install docker on both Slave1
 
-`sudo apt install docker.io`
+```
+sudo apt update
+sudo apt install docker.io
+```
 
 ![image](https://github.com/vistasunil/CT_DevOps_WS_Module3/assets/37858762/979e72df-344e-4874-bc8c-4cf0c87aa11e)
 
