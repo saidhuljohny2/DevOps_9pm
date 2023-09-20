@@ -139,7 +139,7 @@ So now that our Slave1 has been connected to Jenkins Server, it look similar to 
 
 ![image](https://github.com/vistasunil/CT_DevOps_WS_Module3/assets/37858762/9b78058f-d7de-45c2-a502-d91a56104aab)
 
-2. Create a Jenkins job to clone repo _https://github.com/vistasunil/devopsIQ_ and deploy the website inside it the slave instance in container.
+2. Create a Jenkins job to clone repo and deploy the website inside it the slave instance in container.
 
 ### _Solution:_
 
@@ -173,11 +173,11 @@ You should land on a page like this.
 
 v. Place your git repository link as shown below.
 
-![image](https://github.com/vistasunil/CT_DevOps_WS_Module3/assets/37858762/9bda1e77-7003-4229-9bcf-8806c275950f)
+![Alt text](image.png)
 
 vi. Click on Restrict where this project can be run. Add Slave1 there.
 
-![image](https://github.com/vistasunil/CT_DevOps_WS_Module3/assets/37858762/4ad9b655-1897-4b3b-a959-7a7deac652ff)
+![Alt text](image-2.png)
 
 vii. Go to Source Code Management, click on git, add the git repository link there as well.
 
