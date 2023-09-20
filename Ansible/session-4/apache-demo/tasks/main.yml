@@ -1,0 +1,11 @@
+---
+# tasks file for apache-demo
+
+# Including tasks from install.yml
+- include: install.yml
+
+# Including tasks from configure.yml
+- include: configure.yml
+
+# Including tasks from service.yml
+- include: service.yml

@@ -1,0 +1,6 @@
+# handlers/main.yml: Handlers file for the apache-demo role
+
+- name: restart apache2 service
+  service:
+    name: apache2
+    state: restarted

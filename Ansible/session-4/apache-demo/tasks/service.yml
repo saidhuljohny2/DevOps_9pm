@@ -1,0 +1,6 @@
+# tasks/service.yml: Service tasks for the apache-demo role
+
+- name: Starting apache2 service
+  service:
+    name: apache2
+    state: started

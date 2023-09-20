@@ -1,0 +1,9 @@
+# tasks/install.yml: Install tasks for the apache-demo role
+
+- name: Install apache2
+  apt:
+    name: apache2
+    update_cache: yes
+    state: latest
+
+

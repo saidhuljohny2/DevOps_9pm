@@ -1,0 +1,22 @@
+# tasks/configure.yml: Configure tasks for the apache-demo role
+
+- name: Configure apache2.conf file
+  copy:
+    src: apache2.conf
+    dest: /etc/apache2/
+  notify:
+    - restart apache2 service
+
+- name: Send copy.html file
+  copy:
+    src: copy.html
+    dest: /var/www/html/
+  notify:
+    - restart apache2 service
+
+- name: Set ownership and permissions for copy.html
+  file:
+    path: /var/www/html/copy.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
