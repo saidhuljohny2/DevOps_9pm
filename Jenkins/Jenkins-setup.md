@@ -251,4 +251,28 @@ xvi. Now enter slave1 _http://<Public IP:82>/devopsIQ/_ in the browser.
 
 
 ## $`\textcolor{red}{\text{Website is Deployed successfully}}`$
+  but it we are still manually building the code, lets automate the process using webhook
+
+## let's automate with webhook: 2 changes needed
+
+1. jenkins change: to trigger automatically
+  go to dashboard > demo > configure > Build Triggers > enable github hook trigger > save
+  generate secrete :
+          dashboard > people > devops > configure > API Token > generate > copy
+
+2. github change:
+  go to your github repository
+  click on settings
+  click on webhooks
+  add webhook
+      http://34.125.3.133:8080/github-webhook/
+      paste the secret from Jenkins
+  click save 
+        
+now it is automated, we dont need to run the build manually
+
+3. For testing :
+    modifly any code in repository
+    it automatically trigger build and deploy
+check status in Jenkins
 
