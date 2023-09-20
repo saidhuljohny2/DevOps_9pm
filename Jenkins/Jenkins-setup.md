@@ -145,13 +145,14 @@ So now that our Slave1 has been connected to Jenkins Server, it look similar to 
 
 i. Open your GitHub account and import the below given repository.
 
-_****_
+_**https://github.com/saidhuljohny2/DevOps_9pm/tree/main/Jenkins/jenkinslab-main/lab1**_
 
-ii. Install docker on both Slave1
+ii. Install docker on Slave1
 
 ```
 sudo apt update
 sudo apt install docker.io
+sudo usermod -aG docker $USER
 ```
 
 ![image](https://github.com/vistasunil/CT_DevOps_WS_Module3/assets/37858762/979e72df-344e-4874-bc8c-4cf0c87aa11e)
@@ -194,17 +195,13 @@ ix. Click on the blue circle of build #1.
 
 You can see it has been built successfully. Let us verify that.
 
-x. Go to slave1.
+x. Go to slave1. 
+  copy build workspace path
 
 ```
-ls -ltr
-cd workspace
-ls -ltr
-cd Demo
-ls -ltr
+cd /home/ubuntu/jenkins/workspace/demo
+ls
 ```
-
-![image](https://github.com/vistasunil/CT_DevOps_WS_Module3/assets/37858762/98a7b93c-d312-4df7-adf3-e956ddc5d24b)
 
 You can see the repository files there. This means the git repository has been successfully cloned into the Demo job.
 
@@ -218,7 +215,7 @@ xii. Now go back to configuring the job. Click on Build, then go to Execute shel
 
 ```
 sudo docker rm -f $(sudo docker ps -a -q)
-sudo docker build /home/ubuntu/jenkins/workspace/Demo -t devopsdemo
+sudo docker build /home/ubuntu/jenkins/workspace/demo/Jenkins/jenkinslab-main -t devopsdemo
 sudo docker run -it -p 82:80 -d devopsdemo
 ```
 
