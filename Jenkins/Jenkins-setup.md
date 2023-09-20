@@ -249,5 +249,6 @@ xvi. Now enter slave1 _http://<Public IP:82>/devopsIQ/_ in the browser.
 
 ![image](https://github.com/vistasunil/CT_DevOps_WS_Module3/assets/37858762/55b74de9-0301-4b42-8930-e4787e9c4a9b)
 
-Website is accessible successfully.
+
+## $`\textcolor{red}{\text{Website is accessible successfully}}`$
 
