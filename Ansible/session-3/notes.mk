@@ -63,9 +63,6 @@ webpage_source: files/index.html
 7. tasks/main.yml : 
 # tasks/main.yml
 
-# This is the main tasks file for the webserver role.
-# It imports other task files for different roles.
-
 # Import the task to install the web server.
 - import_tasks: install_webserver.yml
 
