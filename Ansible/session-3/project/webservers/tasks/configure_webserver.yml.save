@@ -23,5 +23,5 @@
 handlers:
 - name: Restart Web Server
   service:
-ame: "{{ webserver_service }}"
+    name: "{{ webserver_service }}"
     state: restarted
