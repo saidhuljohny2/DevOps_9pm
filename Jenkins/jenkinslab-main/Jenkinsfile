@@ -27,8 +27,8 @@ pipeline {
 	}
 	stage('Docker Push'){
 		steps {
-		    sh "sudo docker login --username vistasunil --password ${dockerpass}"
-                    sh "sudo docker push vistasunil/devopsdemo:latest"
+		    sh "sudo docker login --username shaiksaidhul --password ${dockerpass}"
+                    sh "sudo docker push shaiksaidhul/devopsdemo:latest"
 	        }
 	}
 	stage('Configure servers with Docker and deploy website') {
