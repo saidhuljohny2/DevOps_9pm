@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - name: web
+      containerPort: 80
+
+# Here's what each section does:
+# apiVersion specifies the Kubernetes API version being used. In this case, it's v1, which is the core API version.
+# kind specifies the type of Kubernetes resource being defined, and in this YAML, it's a Pod, indicating that we are creating a Pod.
+# metadata provides metadata for the Pod, including the name of the Pod. In this example, the Pod is named "nginx."
+# spec contains the specification for the Pod, including its containers and other configuration details.
+# containers is an array that lists the containers to run within the Pod. In this case, there is one container named "nginx."
+# name specifies the name of the container, which is "nginx" in this example.
+# image specifies the Docker image to use for the container. In this case, it's the official Nginx image from Docker Hub.
+# ports defines the ports to expose in the container. In this example, there is one port named "web," and it specifies that the container should listen on port 80.
+# So, this YAML defines a Pod named "nginx" that runs a single Nginx container, exposing port 80 within the container. When this YAML is applied to a Kubernetes cluster, it will create a Pod running the Nginx web server.

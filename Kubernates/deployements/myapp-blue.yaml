@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-blue
+  labels:
+    app: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: blue
+    spec:
+      containers:
+      - name: myapp
+        image: gcr.io/gcp-batch-morning/myserver:v1
+        ports:
+        - containerPort: 8888
+
+
+# In this YAML configuration:
+
+# The apiVersion and kind fields specify the Kubernetes API version and resource type.
+# The metadata section contains metadata for the Deployment, including its name and labels.
+# The spec section defines the desired state of the Deployment.
+# replicas specifies that three replica Pods should be maintained.
+# selector defines the label selector for Pods controlled by the Deployment.
+# template contains the Pod template that defines the configuration for the Pods.
+# metadata in the template sets labels for the Pods.
+# spec in the template specifies the configuration for the Pods.
+# containers lists the containers to run in the Pods.
+# name is the name of the container.
+# image specifies the Docker image for the container.
+# ports defines the ports to expose in the container, with containerPort set to 8888.
+# This Deployment configuration is instructing Kubernetes to maintain three replicas of Pods with the specified configuration, including the container running the gcr.io/gcp-batch-morning/myserver:v1 image on port 8888. The labels help identify and manage the Pods associated with this Deployment.

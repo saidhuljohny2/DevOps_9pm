@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blue-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+spec:
+    rules:
+    - host: example.com
+      http:
+         paths:
+         - backend:     
+             service:
+               name: myapp-blue-service
+               port:
+                 number: 80
+           path: /user
+           pathType: ImplementationSpecific
+
+# This YAML configuration defines an Ingress resource in Kubernetes that configures how incoming HTTP traffic should be routed to a specific service within the cluster. Let's break down the key components of this configuration:
+# apiVersion: networking.k8s.io/v1: Specifies the API version for the Ingress resource. In this case, it's using version v1 of the networking.k8s.io API.
+# kind: Ingress: Specifies that this YAML configuration defines an Ingress resource.
+# metadata: Contains metadata information for the Ingress resource, such as its name and annotations.
+# name: blue-ingress: Sets the name of the Ingress resource to "blue-ingress."
+# annotations: Annotations are key-value pairs that provide additional configuration or metadata for the Ingress. In this case, there are three annotations:
+# kubernetes.io/ingress.class: nginx: Specifies that the Ingress should be managed by the "nginx" Ingress Controller. Different Ingress Controllers can be used to manage Ingress resources, and this annotation helps route traffic to the correct controller.
+# nginx.ingress.kubernetes.io/ssl-redirect: "false": Indicates that SSL (HTTPS) redirection should be disabled. By default, many Ingress Controllers redirect HTTP traffic to HTTPS if TLS is configured. Setting this annotation to "false" disables that behavior.
+# nginx.ingress.kubernetes.io/rewrite-target: /: Specifies that when requests match the Ingress rules, they should be rewritten to the root ("/") path. This can be useful for applications that expect requests to start at the root path.
+# spec: Defines the specification for the Ingress resource, including routing rules.
+# rules: Contains an array of rules for routing incoming traffic based on hostnames.
+# host: myapp.example.com: Specifies that incoming traffic with the hostname "myapp.example.com" should be handled by this Ingress rule.
+# http: Indicates that the Ingress rule handles HTTP traffic.
+# paths: Contains an array of path-based routing rules within this Ingress rule.
+# backend: Specifies the backend service to which traffic should be routed.
+# service: Defines the name of the Kubernetes service to route traffic to. In this case, it's "myapp-blue-service."
+# port: Specifies the port number on which the service is listening. It's set to port 80.
+# path: /user: Defines the path prefix "/user" to match incoming requests. Requests that match this path will be routed to the specified backend service.
+# pathType: ImplementationSpecific: Indicates that the path type is implementation-specific, allowing the Ingress Controller to interpret the path in a way that aligns with its behavior.
+# In summary, this Ingress configuration defines how HTTP traffic with the hostname "myapp.example.com" and the path prefix "/user" should be routed to the "myapp-blue-service" service on port 80. It also disables SSL redirection and rewrites requests to the root path ("/"). The Ingress is associated with the "nginx" Ingress Controller.
