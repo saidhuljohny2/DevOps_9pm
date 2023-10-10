@@ -121,7 +121,6 @@ $ ansible-playbook kubernetes-deploy.yml
 go to new item => cd_job_cafeapp => freestyle => build steps => execute shell =>  ansible-playbook /opt/docker/kubernetes-deploy.yml
 
 go to ci-job => 
-  - change name of build yaml => create-image-cafe-app.yml 
   - add post build action 
       => build other projects => add cd-job project
   - poll scm => * * * * * (every minute)
