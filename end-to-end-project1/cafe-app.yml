@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: webservers
   become: yes  # This will run the tasks with sudo privileges, so you don't need to use 'sudo' in each command
 
   tasks:
