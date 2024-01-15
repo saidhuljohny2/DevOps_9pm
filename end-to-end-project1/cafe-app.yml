@@ -1,5 +1,5 @@
 ---
-- hosts: ansible
+- hosts: webservers
 
   tasks:
   - name: clone repository
