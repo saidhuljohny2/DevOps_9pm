@@ -10,10 +10,10 @@
       command: ls -l
 
     - name: Deploy cafeapp on Kubernetes
-      command: sudo kubectl apply -f end-to-end-project1/cafe-app-deployment.yml
+      command: sudo kubectl apply -f /var/lib/jenkins/workspace/cd_job_cafeapp/end-to-end-project1/cafe-app-deployment.yml
 
     - name: Create service for cafeapp
-      command: sudo kubectl apply -f end-to-end-project1/cafe-app-service.yml
+      command: sudo kubectl apply -f /var/lib/jenkins/workspace/cd_job_cafeapp/end-to-end-project1/cafe-app-service.yml
 
     - name: Update deployment with new pods if image updated in Docker Hub
       command: sudo kubectl rollout restart deployment.apps/mylab-cafe-app
