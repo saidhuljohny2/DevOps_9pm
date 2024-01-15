@@ -1,6 +1,5 @@
 ---
 - hosts: webservers
-
   tasks:
     - name: Authenticate with Docker Hub
       command: sudo docker login -u "saidhuljohny2" -p "John@1234"
