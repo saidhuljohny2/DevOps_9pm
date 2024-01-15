@@ -3,10 +3,10 @@
 
   tasks:
     - name: deploy cafeapp on kubernetes
-      command: sudo kubectl apply -f end-to-end-project1/cafe-app-deployment.yml
+      command: sudo kubectl apply -f cd_job_cafeapp/end-to-end-project1/cafe-app-deployment.yml
 
     - name: create service for cafeapp
-      command: sudo kubectl apply -f end-to-end-project1/cafe-app-service.yml
+      command: sudo kubectl apply -f cd_job_cafeapp/end-to-end-project1/cafe-app-service.yml
 
     - name: update deployment with new pods if image updated in docker hub
       command: sudo kubectl rollout restart deployment.apps/mylab-cafe-app
