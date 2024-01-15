@@ -1,6 +1,5 @@
 ---
-- hosts: kubernetes
-  user: root
+- hosts: webservers
 
   tasks:
     - name: deploy cafeapp on kubernetes
