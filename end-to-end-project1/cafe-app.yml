@@ -16,7 +16,6 @@
       command: sudo docker build -t cafe-app:latest /opt/docker/cafe-app
       args:
         chdir: /opt/docker/
-
     - name: Create tag to push image onto Docker Hub
       command: sudo docker tag cafe-app:latest saidhuljohny2/cafe-app:latest
 
