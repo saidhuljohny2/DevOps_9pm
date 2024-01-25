@@ -4,7 +4,6 @@
     - name: Authenticate with Docker Hub
       command: sudo docker login -u "saidhuljohny2" -p "John@1234"
       when: docker_hub_username is defined and docker_hub_password is defined
-
     - name: Clone repository
       git:
         repo: https://github.com/saidhuljohny2/Cafe-App.git
