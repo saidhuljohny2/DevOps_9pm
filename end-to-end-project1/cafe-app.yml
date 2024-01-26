@@ -1,7 +1,9 @@
+---
 - hosts: webservers
-  become: yes  # This will run the tasks with sudo privileges, so you don't need to use 'sudo' in each command
-
   tasks:
+    - name: Authenticate with Docker Hub
+      command: sudo docker login -u "saidhuljohny2" -p "John@1234"
+      when: docker_hub_username is defined and docker_hub_password is defined
     - name: Clone repository
       git:
         repo: https://github.com/saidhuljohny2/Cafe-App.git
@@ -10,12 +12,12 @@
         update: yes
 
     - name: Create Docker image
-      command: docker build -t cafe-app:latest /opt/docker/cafe-app
+      command: sudo docker build -t cafe-app:latest /opt/docker/cafe-app
       args:
         chdir: /opt/docker/
-
     - name: Create tag to push image onto Docker Hub
-      command: docker tag cafe-app:latest saidhuljohny2/cafe-app:latest
+      command: sudo docker tag cafe-app:latest saidhuljohny2/cafe-app:latest
 
     - name: Push Docker image
-      command: docker push saidhuljohny2/cafe-app:latest
+      command: sudo docker push saidhuljohny2/cafe-app:latest
+      when: docker_hub_username is defined and docker_hub_password is defined

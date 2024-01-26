@@ -1,13 +1,19 @@
 ---
-- hosts: kubernetes
-  user: root
+- hosts: webservers
 
   tasks:
-    - name: deploy cafeapp on kubernetes
-      command: sudo kubectl apply -f cafe-app-deployment.yml
+    - name: Debug working directory
+      debug:
+        var: ansible_env.PWD
 
-    - name: create service for cafeapp
-      command: sudo kubectl apply -f cafe-app-service.yml
+    - name: Debug files in the directory
+      command: ls -l
 
-    - name: update deployment with new pods if image updated in docker hub
+    - name: Deploy cafeapp on Kubernetes
+      command: sudo kubectl apply -f /var/lib/jenkins/workspace/cd_job_cafeapp/end-to-end-project1/cafe-app-deployment.yml
+
+    - name: Create service for cafeapp
+      command: sudo kubectl apply -f /var/lib/jenkins/workspace/cd_job_cafeapp/end-to-end-project1/cafe-app-service.yml
+
+    - name: Update deployment with new pods if image updated in Docker Hub
       command: sudo kubectl rollout restart deployment.apps/mylab-cafe-app
