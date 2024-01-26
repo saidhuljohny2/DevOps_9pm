@@ -116,7 +116,7 @@ webpage_source: files/index.html
 
 12. tests/test.yml  :
 ---
-- hosts: webservers
+- hosts: slave-1
   remote_user: root
   roles:
     - webservers
@@ -125,8 +125,8 @@ webpage_source: files/index.html
 
 Here's an example playbook:
 # deploy_webserver.yml
-- hosts: your_target_hosts
-  become: true  # Use if you need superuser privileges
+- hosts: slave-1
+  become: true  
   roles:
     - webservers
 
