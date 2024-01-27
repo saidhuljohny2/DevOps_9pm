@@ -1,0 +1,85 @@
+pipeline {
+    agent any
+    
+    tools {
+        jdk 'jdk17'
+        nodejs 'node16'
+    }
+    
+    environment {
+        SCANNER_HOME = tool 'sonarqube-scanner'
+        PROJECT_ID = 'my-devops-batch06-b'
+        CLUSTER_NAME = 'my-gke-cluster'
+        LOCATION = 'us-central1'
+        CREDENTIALS_ID = 'kubernetes'
+    }
+    
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        
+        stage('Checkout from Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/saidhuljohny2/a-swiggy-clone.git'
+            }
+        }
+
+        stage("Sonarqube Analysis "){
+             steps{
+                 withSonarQubeEnv('sonarqube-server') {
+                     sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Swiggy-CI \
+                     -Dsonar.projectKey=Swiggy-CI '''
+                 }
+             }
+         }
+
+        stage('Install Dependencies') {
+             steps {
+                 sh "npm install"
+             }
+         }
+
+        stage('TRIVY FS SCAN') {
+             steps {
+                 sh "trivy fs . > trivyfs.txt"
+             }
+         }
+
+        stage("Build image") {
+            steps {
+                script {
+                    myapp = docker.build("gcplabpractice6/swiggy-clone:${env.BUILD_ID}")
+                }
+            }
+        }
+
+        stage("Push image") {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        myapp.push("latest")
+                        myapp.push("${env.BUILD_ID}")
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to GKE') {
+            steps {
+                script {
+                    sh "sed -i 's/swiggy-clone:latest/swiggy-clone:${env.BUILD_ID}/g' Kubernetes/deployment.yml"
+                    step([$class: 'KubernetesEngineBuilder', 
+                    projectId: env.PROJECT_ID, 
+                    clusterName: env.CLUSTER_NAME, 
+                    location: env.LOCATION, 
+                    manifestPattern: 'Kubernetes/deployment.yml', 
+                    credentialsId: env.CREDENTIALS_ID, 
+                    verifyDeployments: true])
+                }
+            }
+        }
+    }
+}
