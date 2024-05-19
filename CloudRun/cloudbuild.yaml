@@ -6,6 +6,7 @@
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/my-devops-batch06-b/myapp-repo-artifacts/pythonapp:v1']
+    # -name: 'gcr.io'
 
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'

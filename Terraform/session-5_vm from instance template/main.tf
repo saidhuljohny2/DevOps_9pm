@@ -6,12 +6,11 @@ provider "google" {
   credentials = "/home/gcp_lab_practice_5/thermal-micron-396706-c64eaa3c309e.json"
 }
 
-#create resource
+#create resources in gcp
 
 resource "google_compute_instance_template" "tpl" {
   name         = "template"
   machine_type = "e2-medium"
-
   disk {
     source_image = "debian-cloud/debian-11"
     auto_delete  = true
@@ -36,7 +35,7 @@ resource "google_compute_instance_from_template" "tpl" {
 
   source_instance_template = google_compute_instance_template.tpl.self_link_unique
 
-  // Override fields from instance template
+  // Override fields from instance template and do changes
   can_ip_forward = false
   labels = {
     my_key = "my_value"
