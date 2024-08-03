@@ -6,7 +6,7 @@
       when: docker_hub_username is defined and docker_hub_password is defined
     - name: Clone repository
       git:
-        repo: https://github.com/saidhuljohny2/Cafe-App.git
+        repo: https://github.com/saidhuljohny2/Cafe-App.git 
         dest: /opt/docker/cafe-app
         clone: yes
         update: yes
