@@ -19,5 +19,5 @@
       command: sudo docker tag cafe-app:latest saidhuljohny2/cafe-app:latest
 
     - name: Push Docker image
-      command: sudo docker push saidhuljohny2/cafe-app:latest
+      command: docker push saidhuljohny2/cafe-app:latest
       when: docker_hub_username is defined and docker_hub_password is defined
